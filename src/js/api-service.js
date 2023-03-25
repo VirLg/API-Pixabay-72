@@ -39,7 +39,7 @@ orientation:"horizontal",
             console.log(data.totalHits);
             if (data.totalHits === this.page || !data.totalHits) {
               
-                this.BTN()
+               
                 this.page = 0;
                 
             } 

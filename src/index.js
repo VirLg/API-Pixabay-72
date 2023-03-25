@@ -37,17 +37,19 @@ async function handleForm(evt) {
          
 async function handleLoadMore() { 
   BTN.btnDisabledLoader()
+  
  marcupSet(await GalleryAPIServise.fetchGallery()) 
 
 }
 
 function marcupSet(arr) {
-  if (!arr.hits.length||!arr.hits) { 
+  console.log(arr);
+  if (!arr.hits.length ?? !arr) {
   
     BTN.btnIsHidden()
     BTN.btnIsShowSearch()
     return
-  }       
+  } else {   
   
   const marcup = arr.hits.map(({largeImageURL,previewURL,likes,views,comments}) =>` 
           <div class="photo-card">
@@ -76,7 +78,7 @@ function marcupSet(arr) {
   BTN.btnEnableSearch()
     return galleryPagination(markupPagination)  
 }   
-
+}
 function galleryPagination(markupPagination) { 
 const gallery = new SimpleLightbox('.gallery a',
     {
