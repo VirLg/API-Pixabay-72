@@ -1,5 +1,6 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import LoadMore from './js/load-more'
 import API from './js/api-service'
 
@@ -17,7 +18,9 @@ refBTNLoadMore.addEventListener('click', handleLoadMore)
 const GalleryAPIServise = new API.GalleryAPIServise()
 const BTN = new LoadMore.LoadMore()
 
-  
+//  Notify.info("We're sorry, but you've reached the end of search results.")  
+"We're sorry, but you've reached the end of search results."
+
 async function handleForm(evt) { 
     evt.preventDefault()
   const serchInput = evt.target.elements.searchQuery.value.trim()
@@ -45,33 +48,39 @@ async function handleLoadMore() {
 function marcupSet(arr) {
   console.log(arr);
   if (!arr.hits.length ?? !arr) {
+    Notify.failure("Sorry, there are no images matching your search query. Please try again.")
   
     BTN.btnIsHidden()
     BTN.btnIsShowSearch()
     return
   } else {   
   
-  const marcup = arr.hits.map(({largeImageURL,previewURL,likes,views,comments}) =>` 
+    const marcup = arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
+     
+     return ` 
           <div class="photo-card">
           <div class="thumb">
           <a href="${largeImageURL}"><img src="${previewURL}" alt="" title="" loading="lazy"/></a> 
           </div>
           <div class="info">
           <p class="info-item">
-            <b>Likes ${likes}</b>
+            <b>Likes: ${likes}</b>
           </p>
           <p class="info-item">
-            <b>Views ${views}</b>
+            <b>Views: ${views}</b>
           </p>
           <p class="info-item">
-            <b>Comments ${comments}</b>
+            <b>Comments: ${comments}</b>
+          </p>
+           <p class="info-item">
+            <b>Downloads: ${downloads}</b>
           </p>
           <p class="info-item">
-            <b>Downloads</b>
+            <b>Tags: ${tags}</b>
           </p>
           </div>
           </div>
-        `).join('');
+        `}).join('');
   const markupPagination =  refDivGallery.insertAdjacentHTML('beforeend', marcup)
          
   BTN.btnEnableLoader()

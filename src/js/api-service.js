@@ -1,4 +1,4 @@
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import LoadMore from './load-more'
 const BTN = new LoadMore.LoadMore()
 
@@ -18,9 +18,12 @@ class GalleryAPIServise {
     async fetchGallery() {
 
 const searchParams = new URLSearchParams({
-per_page:40,
-image_type:"photo",
-orientation:"horizontal",  
+    per_page:40,
+    image_type:"photo",
+    orientation: "horizontal",
+    q: this.requestApi,  
+    page: this.page,
+    safesearch:true,
     });
 
 
@@ -28,7 +31,7 @@ orientation:"horizontal",
  BTN.btnDisabledSearch()
         try {
             
-            const responce = await fetch(`${this.BEST_URL}/?key=${this.KEY}&q=${this.requestApi}&${searchParams}&page=${this.page}`)
+            const responce = await fetch(`${this.BEST_URL}/?key=${this.KEY}&${searchParams}`)
         
             if (!responce.ok) {
                 throw new Error(responce.statusText)
@@ -37,12 +40,17 @@ orientation:"horizontal",
             console.log(this.page);
             console.log(this.requestApi);
             console.log(data.totalHits);
-            if (data.totalHits === this.page || !data.totalHits) {
-              
-               
+
+            if (data.totalHits <= 40) {
+             
+                BTN.btnIsHidden()
+            } else if (data.totalHits === this.page  ) {
+                Notify.info("We're sorry, but you've reached the end of search results.")
                 this.page = 0;
-                
-            } 
+            } else if (!data.totalHits) {
+                this.page = 0;
+            }
+            
             this.incrementPage()
                 return data
                 
