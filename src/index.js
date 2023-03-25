@@ -42,7 +42,7 @@ async function handleLoadMore() {
 }
 
 function marcupSet(arr) {
-  if (!arr.hits.length) { 
+  if (!arr.hits.length||!arr.hits) { 
   
     BTN.btnIsHidden()
     BTN.btnIsShowSearch()
