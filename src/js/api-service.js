@@ -40,17 +40,16 @@ const searchParams = new URLSearchParams({
             console.log(this.page);
             console.log(this.requestApi);
             console.log(data.totalHits);
-
-            if (data.totalHits <= 40) {
-             
-                BTN.btnIsHidden()
-            } else if (data.totalHits === this.page  ) {
-                Notify.info("We're sorry, but you've reached the end of search results.")
-                this.page = 0;
-            } else if (!data.totalHits) {
-                this.page = 0;
-            }
             
+            if (data.totalHits <= 40) { 
+                Notify.info("We're sorry, but you've reached the end of search results.") 
+                BTN.btnIsHidden()
+            }else if (data.totalHits === this.page || !data.totalHits) {
+             
+               
+                this.page = 0;
+                
+            } 
             this.incrementPage()
                 return data
                 

@@ -21,6 +21,10 @@ const BTN = new LoadMore.LoadMore()
 //  Notify.info("We're sorry, but you've reached the end of search results.")  
 "We're sorry, but you've reached the end of search results."
 
+//  Notify.info("We're sorry, but you've reached the end of search results.") 
+
+
+
 async function handleForm(evt) { 
     evt.preventDefault()
   const serchInput = evt.target.elements.searchQuery.value.trim()
@@ -42,13 +46,13 @@ async function handleLoadMore() {
   BTN.btnDisabledLoader()
   
  marcupSet(await GalleryAPIServise.fetchGallery()) 
-
+console.log(await GalleryAPIServise.fetchGallery());
 }
 
 function marcupSet(arr) {
-  console.log(arr);
+  
   if (!arr.hits.length ?? !arr) {
-    Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+   
   
     BTN.btnIsHidden()
     BTN.btnIsShowSearch()
