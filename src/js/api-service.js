@@ -11,6 +11,7 @@ class GalleryAPIServise {
     constructor() {
         this.requestApi = '';
         this.page = 1;  
+        this.BTN = BTN.btnIsHidden();
     }
  
     
@@ -35,13 +36,16 @@ orientation:"horizontal",
             const data = await responce.json()
             console.log(this.page);
             console.log(this.requestApi);
-             if (data.totalHits === this.page||!data.totalHits) { 
+            console.log(data.totalHits);
+            if (data.totalHits === this.page || !data.totalHits) {
               
-                 BTN.btnIsHidden()
-                 this.page = 0;
-            }
+                this.BTN()
+                this.page = 0;
+                
+            } 
             this.incrementPage()
-            return data
+                return data
+                
         } catch (e) { 
             console.log(e)
         }

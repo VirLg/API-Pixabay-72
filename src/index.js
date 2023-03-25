@@ -31,7 +31,8 @@ async function handleForm(evt) {
     BTN.btnDisabledLoader()
     BTN.btnIsShow()
   refDivGallery.innerHTML = ''
-  marcupSet(await GalleryAPIServise.fetchGallery())    
+  marcupSet(await GalleryAPIServise.fetchGallery())  
+
 }  
          
 async function handleLoadMore() { 
@@ -41,7 +42,13 @@ async function handleLoadMore() {
 }
 
 function marcupSet(arr) {
-       
+  if (!arr.hits.length) { 
+  
+    BTN.btnIsHidden()
+    BTN.btnIsShowSearch()
+    return
+  }       
+  
   const marcup = arr.hits.map(({largeImageURL,previewURL,likes,views,comments}) =>` 
           <div class="photo-card">
           <div class="thumb">
@@ -83,3 +90,6 @@ const gallery = new SimpleLightbox('.gallery a',
     }
 );   
 }   
+
+const a = document.body;
+a.style.backgroundColor = "azure"
