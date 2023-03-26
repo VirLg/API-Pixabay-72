@@ -41,23 +41,22 @@ async function handleForm(evt) {
   marcupSet(await GalleryAPIServise.fetchGallery())  
 
 }  
-         
-async function handleLoadMore() { 
+          function handleLoadMore() { 
   BTN.btnDisabledLoader()
   
- marcupSet(await GalleryAPIServise.fetchGallery()) 
-console.log(await GalleryAPIServise.fetchGallery());
+ marcupSet( GalleryAPIServise.fetchGallery()) 
+console.log( GalleryAPIServise.fetchGallery());
 }
 
 function marcupSet(arr) {
   
-  if (!arr.hits.length ?? !arr) {
+  // if (!arr.hits.length ?? !arr) {
    
   
-    BTN.btnIsHidden()
-    BTN.btnIsShowSearch()
-    return
-  } else {   
+  //   BTN.btnIsHidden()
+  //   BTN.btnIsShowSearch()
+  //   return
+  // } else {   
   
     const marcup = arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
      
@@ -91,7 +90,7 @@ function marcupSet(arr) {
   BTN.btnEnableSearch()
     return galleryPagination(markupPagination)  
 }   
-}
+// }
 function galleryPagination(markupPagination) { 
 const gallery = new SimpleLightbox('.gallery a',
     {
@@ -108,3 +107,7 @@ const gallery = new SimpleLightbox('.gallery a',
 
 const a = document.body;
 a.style.backgroundColor = "azure"
+
+
+
+ 

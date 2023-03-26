@@ -1,4 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import axios from 'axios';
 import LoadMore from './load-more'
 const BTN = new LoadMore.LoadMore()
 
@@ -15,7 +16,7 @@ class GalleryAPIServise {
     }
  
     
-    async fetchGallery() {
+async fetchGallery() {
 
 const searchParams = new URLSearchParams({
     per_page:40,
@@ -26,27 +27,21 @@ const searchParams = new URLSearchParams({
     safesearch:true,
     });
 
-
-
  BTN.btnDisabledSearch()
         try {
-            
-            const responce = await fetch(`${this.BEST_URL}/?key=${this.KEY}&${searchParams}`)
+            const axi = await axios.get(`${this.BEST_URL}/?key=${this.KEY}&${searchParams}`)
+           const responce = axi.data;
         
-            if (!responce.ok) {
+            if (axi.status!==200) {
                 throw new Error(responce.statusText)
             }
-            const data = await responce.json()
-            console.log(this.page);
-            console.log(this.requestApi);
-            console.log(data.totalHits);
             
+            const data =  responce
             if (data.totalHits <= 40) { 
                 Notify.info("We're sorry, but you've reached the end of search results.") 
                 BTN.btnIsHidden()
             }else if (data.totalHits === this.page || !data.totalHits) {
              
-               
                 this.page = 0;
                 
             } 
