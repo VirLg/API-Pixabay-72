@@ -50,13 +50,13 @@ console.log( GalleryAPIServise.fetchGallery());
 
 function marcupSet(arr) {
   
-  // if (!arr.hits.length ?? !arr) {
+  if (!arr.hits.length ?? !arr) {
    
   
-  //   BTN.btnIsHidden()
-  //   BTN.btnIsShowSearch()
-  //   return
-  // } else {   
+    BTN.btnIsHidden()
+    BTN.btnIsShowSearch()
+    return
+  } else {   
   
     const marcup = arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
      
@@ -90,7 +90,7 @@ function marcupSet(arr) {
   BTN.btnEnableSearch()
     return galleryPagination(markupPagination)  
 }   
-// }
+}
 function galleryPagination(markupPagination) { 
 const gallery = new SimpleLightbox('.gallery a',
     {
