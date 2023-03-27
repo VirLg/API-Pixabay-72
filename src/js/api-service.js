@@ -16,41 +16,45 @@ class GalleryAPIServise {
     }
  
     
-async fetchGallery() {
+    async fetchGallery() {
 
-const searchParams = new URLSearchParams({
-    per_page:40,
-    image_type:"photo",
-    orientation: "horizontal",
-    q: this.requestApi,  
-    page: this.page,
-    safesearch:true,
-    });
+        const searchParams = new URLSearchParams({
+            per_page: 40,
+            image_type: "photo",
+            orientation: "horizontal",
+            q: this.requestApi,
+            page: this.page,
+            safesearch: true,
+        });
 
- BTN.btnDisabledSearch()
+        BTN.btnDisabledSearch()
         try {
             const axi = await axios.get(`${this.BEST_URL}/?key=${this.KEY}&${searchParams}`)
-           const responce = axi.data;
-        
-            if (axi.status!==200) {
+            const responce = axi.data;
+        const data = responce
+            if (axi.status !== 200) {
                 throw new Error(responce.statusText)
             }
             
-            const data =  responce
-            if (data.totalHits <= 40) { 
-                Notify.info("We're sorry, but you've reached the end of search results.") 
+            
+          else if (data.totalHits <= 40) {
+              
+                Notify.info("We're sorry, but you've reached the end of search results.")
                 BTN.btnIsHidden()
-            }else if (data.totalHits === this.page || !data.totalHits) {
+            } else if (data.totalHits === this.page || !data.totalHits) {
              
                 this.page = 0;
                 
-            } 
+            }
+        
             this.incrementPage()
-                return data
+            return data
+        }
+        
                 
         } catch (e) { 
             console.log(e)
-        }
+        
     }
     get request() { 
         return this.requestApi

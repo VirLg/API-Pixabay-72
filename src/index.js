@@ -16,7 +16,7 @@ refForm.addEventListener('submit', handleForm)
 refBTNLoadMore.addEventListener('click', handleLoadMore)
 
 const GalleryAPIServise = new API.GalleryAPIServise()
-const BTN = new LoadMore.LoadMore()
+const BTN = new LoadMore.LoadMore
 
 //  Notify.info("We're sorry, but you've reached the end of search results.")  
 "We're sorry, but you've reached the end of search results."
@@ -28,7 +28,7 @@ const BTN = new LoadMore.LoadMore()
 async function handleForm(evt) { 
     evt.preventDefault()
   const serchInput = evt.target.elements.searchQuery.value.trim()
-    GalleryAPIServise.resetPage()
+    // GalleryAPIServise.resetPage()
   
     if (!serchInput) {
         return
@@ -41,16 +41,18 @@ async function handleForm(evt) {
   marcupSet(await GalleryAPIServise.fetchGallery())  
 
 }  
-          function handleLoadMore() { 
+   async       function handleLoadMore() { 
   BTN.btnDisabledLoader()
   
- marcupSet( GalleryAPIServise.fetchGallery()) 
-console.log( GalleryAPIServise.fetchGallery());
+ marcupSet( await GalleryAPIServise.fetchGallery()) 
+// console.log( GalleryAPIServise.fetchGallery());
 }
 
-function marcupSet(arr) {
+async function marcupSet(arr) {
   
-  if (!arr.hits.length ?? !arr) {
+console.log( await arr.hits);
+
+  if ( !arr) {
    
   
     BTN.btnIsHidden()
@@ -58,7 +60,7 @@ function marcupSet(arr) {
     return
   } else {   
   
-    const marcup = arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
+    const marcup = await arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
      
      return ` 
           <div class="photo-card">
