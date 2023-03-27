@@ -1,15 +1,13 @@
 .footer{
     width: 100%;
-    height: 70px;
-    background-color: teal;
     position: relative;
+height: 70px;
+padding-bottom: 35px;
 }
 
-footer-class {
-    margin: 0;
-    padding: 0;
+.footer-class {
+    
+ display: flex;
+ justify-content: center;
 }
 
-.content {
-    min-height: calc(100vh - 80px);
-}
