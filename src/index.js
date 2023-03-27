@@ -10,20 +10,14 @@ const refForm = document.querySelector('#search-form')
 const refBtnSearch = refForm.lastElementChild
 const refBgContainer = document.querySelector('.bg-container')
 const refDivGallery = refBgContainer.firstElementChild
-const refBTNLoadMore=document.querySelector('.load-more')
+const refBTNLoadMore = document.querySelector('.load-more')
+const refLable = document.querySelector('.info-picter')
 
 refForm.addEventListener('submit', handleForm)
 refBTNLoadMore.addEventListener('click', handleLoadMore)
 
 const GalleryAPIServise = new API.GalleryAPIServise()
 const BTN = new LoadMore.LoadMore
-
-//  Notify.info("We're sorry, but you've reached the end of search results.")  
-"We're sorry, but you've reached the end of search results."
-
-//  Notify.info("We're sorry, but you've reached the end of search results.") 
-
-
 
 async function handleForm(evt) { 
     evt.preventDefault()
@@ -49,8 +43,8 @@ async function handleForm(evt) {
 }
 
 async function marcupSet(arr) {
-  
-// console.log( await arr.hits);
+  refLable.textContent = `${await arr.total} pix.`
+console.log( await arr.total);
 
   if ( !arr) {
    
@@ -111,6 +105,6 @@ const a = document.body;
 a.style.backgroundColor = "azure"
 
 
-const lable = document.querySelector('.info-picter')
-console.log(lable);
+
+
  

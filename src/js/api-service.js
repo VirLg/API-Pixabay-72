@@ -38,7 +38,7 @@ class GalleryAPIServise {
             }   
 
 
-          else if (data.hits.length < 40&&data.totalHits>1) {
+          else if (data.hits.length < 40&&data.totalHits>=1) {
                 
                 Notify.info("We're sorry, but you've reached the end of search results.");
                  
