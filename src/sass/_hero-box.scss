@@ -54,6 +54,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 16px;
         row-gap: 5px;
+       
     }
 
     .thumb {
@@ -66,7 +67,7 @@
     .photo-card {
 
         height: 1fr;
-        width: 16rem;
+        // width: 260px;
 
     }
 
@@ -77,22 +78,26 @@
     .gallery {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        row-gap: 5px;
+        column-gap: 17px;
+        // row-gap: 5px;
+        outline: 2px solid tomato;
+    //    padding-left: 24px;
+    //    padding-right: 24px;
     }
 
         .photo-card {
-            outline: 2px solid tomato;
+            
             margin: 0;
             padding: 0;
-            height: 1fr;
-            width: 14rem;
+           
+            height: 100%;
+            width: 100%;
 }
 .thumb {
     margin: 0;
     padding: 0;
-    height: 10em;
-    width: 14em;
-    margin: 0px;
-    padding: 0px;
+    // height: 100%;
+    width: 100%;
+ 
 }
 }
