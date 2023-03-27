@@ -43,8 +43,28 @@
 .info>p{
     padding: 0px;
     margin: 0px;
-    // background-color: ;
+   
 }
+
+@media screen and (min-width: 480px) {
+.gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+            row-gap: 5px;
+    }
+
+ .thumb {
+
+     margin: 0;
+     padding: 0;
+     width: 100%;
+
+ }
+
+}
+
+
 
 
 
@@ -59,45 +79,33 @@
 
     .thumb {
 
-        height: 10em;
-        width: 16em;
+        margin: 0;
+            padding: 0;
+            width: 100%;
 
     }
 
-    .photo-card {
-
-        height: 1fr;
-        // width: 260px;
-
-    }
+        .photo-card {
+    
+            margin: 0;
+            padding: 0;
+    
+            height: 100%;
+            width: 100%;
 
 }
-
+}
 
 @media screen and (min-width: 1200px) {
     .gallery {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         column-gap: 17px;
-        // row-gap: 5px;
+       
         outline: 2px solid tomato;
-    //    padding-left: 24px;
-    //    padding-right: 24px;
+
     }
 
-        .photo-card {
-            
-            margin: 0;
-            padding: 0;
-           
-            height: 100%;
-            width: 100%;
+        
 }
-.thumb {
-    margin: 0;
-    padding: 0;
-    // height: 100%;
-    width: 100%;
- 
-}
-}
+
