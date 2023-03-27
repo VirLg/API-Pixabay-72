@@ -28,7 +28,7 @@ const BTN = new LoadMore.LoadMore
 async function handleForm(evt) { 
     evt.preventDefault()
   const serchInput = evt.target.elements.searchQuery.value.trim()
-    // GalleryAPIServise.resetPage()
+    GalleryAPIServise.resetPage()
   
     if (!serchInput) {
         return
@@ -45,12 +45,12 @@ async function handleForm(evt) {
   BTN.btnDisabledLoader()
   
  marcupSet( await GalleryAPIServise.fetchGallery()) 
-// console.log( GalleryAPIServise.fetchGallery());
+
 }
 
 async function marcupSet(arr) {
   
-console.log( await arr.hits);
+// console.log( await arr.hits);
 
   if ( !arr) {
    

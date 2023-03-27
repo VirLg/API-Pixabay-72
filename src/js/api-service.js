@@ -34,27 +34,31 @@ class GalleryAPIServise {
         const data = responce
             if (axi.status !== 200) {
                 throw new Error(responce.statusText)
-            }
-            
-            
-          else if (data.totalHits <= 40) {
-              
-                Notify.info("We're sorry, but you've reached the end of search results.")
-                BTN.btnIsHidden()
-            } else if (data.totalHits === this.page || !data.totalHits) {
              
+            }   
+
+
+          else if (data.hits.length < 40&&data.totalHits>1) {
+                
+                Notify.info("We're sorry, but you've reached the end of search results.");
+                 
+                BTN.btnIsHidden()
+                return data
+            } else if ( !data.totalHits) {
+             Notify.failure("Sorry, there are no images matching your search query. Please try again.");
                 this.page = 0;
                 
-            }
-        
+            }else{
+           console.log(data.hits.length);
             this.incrementPage()
-            return data
+                return data
+                
         }
         
                 
-        } catch (e) { 
-            console.log(e)
-        
+        } catch(e) {
+        console.log(e)
+    }
     }
     get request() { 
         return this.requestApi
@@ -74,3 +78,5 @@ class GalleryAPIServise {
 
 
 export default { GalleryAPIServise };
+
+
