@@ -111,5 +111,6 @@ const a = document.body;
 a.style.backgroundColor = "azure"
 
 
-
+const lable = document.querySelector('.info-picter')
+console.log(lable);
  
