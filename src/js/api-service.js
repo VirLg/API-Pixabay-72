@@ -13,24 +13,27 @@ class GalleryAPIServise {
         this.requestApi = '';
         this.page = 1;  
         this.BTN = BTN.btnIsHidden();
+        this.per_page = 40;
     }
  
     
     async fetchGallery() {
 
         const searchParams = new URLSearchParams({
-            per_page: 40,
+            per_page:this.per_page,
             image_type: "photo",
             orientation: "horizontal",
             q: this.requestApi,
             page: this.page,
             safesearch: true,
         });
-
+       
         BTN.btnDisabledSearch()
         try {
+             console.log(searchParams);
             const axi = await axios.get(`${this.BEST_URL}/?key=${this.KEY}&${searchParams}`)
             const responce = axi.data;
+            console.log(responce);
         const data = responce
             if (axi.status !== 200) {
                 throw new Error(responce.statusText)
@@ -38,7 +41,8 @@ class GalleryAPIServise {
             }   
 
 
-          else if (data.hits.length < 40&&data.totalHits>=1) {
+          else if (data.hits.length < this.per_page&&data.totalHits>=1) {
+               
                 
                 Notify.info("We're sorry, but you've reached the end of search results.");
                  
@@ -47,9 +51,10 @@ class GalleryAPIServise {
             } else if ( !data.totalHits) {
              Notify.failure("Sorry, there are no images matching your search query. Please try again.");
                 this.page = 0;
-                
+                // BTN.btnIsHidden()
+                // BTN. btnIsShowSearch()
             }else{
-           console.log(data.hits.length);
+  
             this.incrementPage()
                 return data
                 
@@ -78,5 +83,3 @@ class GalleryAPIServise {
 
 
 export default { GalleryAPIServise };
-
-

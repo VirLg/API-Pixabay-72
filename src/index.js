@@ -43,17 +43,18 @@ async function handleForm(evt) {
 }
 
 async function marcupSet(arr) {
-  refLable.textContent = `${await arr.total} pix.`
-console.log( await arr.total);
+ 
 
-  if ( !arr) {
+
+  if (await !arr) {
    
   
     BTN.btnIsHidden()
     BTN.btnIsShowSearch()
+    BTN.refBtnLoadMore[0].disabled=false
     return
   } else {   
-  
+   refLable.textContent = `${await arr.total} pix.`
     const marcup = await arr.hits.map(({ largeImageURL, previewURL, likes, views, comments, downloads, tags }) => {
      
      return ` 

@@ -32,9 +32,10 @@ this.refDiv[1].classList.remove('loader')
      btnIsShow() { 
         this.refBtnLoadMore[1].style.visibility='visible';
      }
+    
     btnIsShowSearch() { 
-        this.refBtnLoadMore[0].style.visibility = 'visible';
         this.refDiv[0].classList.remove('loader')
+        this.refBtnLoadMore[0].style.visibility = 'visible';
         console.log(this.refBtnLoadMore[0]);
     }
      
